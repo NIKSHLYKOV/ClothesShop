@@ -1,4 +1,4 @@
-package ru.nikshlykov.clothesshop.ui
+package ru.nikshlykov.clothesshop.ui.activities
 
 import android.os.Bundle
 import android.view.Menu
