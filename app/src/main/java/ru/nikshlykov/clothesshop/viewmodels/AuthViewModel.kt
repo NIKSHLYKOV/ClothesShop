@@ -1,7 +1,11 @@
 package ru.nikshlykov.clothesshop.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -9,25 +13,39 @@ class AuthViewModel : ViewModel() {
 
     var logInStatus: MutableLiveData<Int> = MutableLiveData()
 
+    private var firebaseAuth: FirebaseAuth
+
+    private var listener: OnCompleteListener<AuthResult>
+
     private var executorService: ExecutorService = Executors.newFixedThreadPool(1)
 
     init {
         logInStatus.value = 0
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        listener = OnCompleteListener { task ->
+            if (task.isSuccessful) {
+                logInStatus.postValue(2)
+            } else {
+                Log.w(
+                    AuthViewModel::class.java.canonicalName,
+                    "createUserWithEmail:failure",
+                    task.exception
+                )
+                logInStatus.postValue(-1)
+            }
+        }
+    }
+
+    fun createUser(email: String, password: String) {
+        logInStatus.value = 1
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(executorService, listener)
     }
 
     fun signIn(email: String, password: String) {
-        if (email == "nikita" && password == "123") {
-            logInStatus.value = 1
-            delayLogIn()
-        } else {
-            logInStatus.value = -1
-        }
-    }
-
-    private fun delayLogIn(){
-        executorService.execute {
-            Thread.sleep(3000)
-            logInStatus.postValue(2)
-        }
+        logInStatus.value = 1
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(executorService, listener)
     }
 }

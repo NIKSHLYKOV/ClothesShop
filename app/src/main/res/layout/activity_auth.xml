@@ -48,7 +48,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/activity_auth___button___log_in"
+            android:id="@+id/activity_auth___button___sign_in"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -56,6 +56,7 @@
             style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/activity_auth___button___sign_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/sigh_up"

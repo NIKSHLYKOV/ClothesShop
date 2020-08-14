@@ -16,7 +16,8 @@ class AuthActivity : AppCompatActivity() {
     private lateinit var emailEditText: TextInputEditText
     private lateinit var passwordEditText: TextInputEditText
 
-    private lateinit var logInButton: MaterialButton
+    private lateinit var signInButton: MaterialButton
+    private lateinit var signUpButton: MaterialButton
 
     private lateinit var authViewModel: AuthViewModel
 
@@ -25,24 +26,33 @@ class AuthActivity : AppCompatActivity() {
         setContentView(R.layout.activity_auth)
         findViews()
 
-        logInButton.setOnClickListener { view ->
-            view.isEnabled = false
+        signInButton.setOnClickListener {
+            signUpButton.isEnabled = false
+            signInButton.isEnabled = false
             authViewModel.signIn(emailEditText.text.toString(), passwordEditText.text.toString())
+        }
+
+        signUpButton.setOnClickListener {
+            signInButton.isEnabled = false
+            signUpButton.isEnabled = false
+            authViewModel.createUser(emailEditText.text.toString(), passwordEditText.text.toString())
         }
 
         authViewModel = ViewModelProvider.NewInstanceFactory().create(AuthViewModel::class.java)
         authViewModel.logInStatus.observe(this, Observer {
             when (it) {
                 -1 -> {
-                    Toast.makeText(this, "Неправильный пароль или логин", Toast.LENGTH_SHORT)
+                    Toast.makeText(this, "Ошибка", Toast.LENGTH_SHORT)
                         .show()
-                    logInButton.isEnabled = true
+                    signInButton.isEnabled = true
+                    signUpButton.isEnabled = true
+                    signInButton.setBackgroundColor(resources.getColor(R.color.colorPrimary))
                 }
-                1 -> logInButton.setBackgroundColor(resources.getColor(R.color.colorAccent))
                 2 -> {
                     startActivity(Intent(this, MainActivity::class.java))
-                    logInButton.setBackgroundColor(resources.getColor(R.color.colorPrimary))
-                    logInButton.isEnabled = true
+                    signInButton.setBackgroundColor(resources.getColor(R.color.colorPrimary))
+                    signInButton.isEnabled = true
+                    signUpButton.isEnabled = true
 
                 }
             }
@@ -52,6 +62,7 @@ class AuthActivity : AppCompatActivity() {
     private fun findViews() {
         emailEditText = findViewById(R.id.activity_auth___edit_text___email)
         passwordEditText = findViewById(R.id.activity_auth___edit_text___password)
-        logInButton = findViewById(R.id.activity_auth___button___log_in)
+        signInButton = findViewById(R.id.activity_auth___button___sign_in)
+        signUpButton = findViewById(R.id.activity_auth___button___sign_up)
     }
 }
