@@ -39,13 +39,21 @@ class AuthViewModel : ViewModel() {
 
     fun createUser(email: String, password: String) {
         logInStatus.value = 1
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(executorService, listener)
+        if (email.isNotEmpty() && password.isNotEmpty()){
+            firebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(executorService, listener)
+        } else {
+            logInStatus.value = -1
+        }
     }
 
     fun signIn(email: String, password: String) {
         logInStatus.value = 1
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(executorService, listener)
+        if (email.isNotEmpty() && password.isNotEmpty()){
+            firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(executorService, listener)
+        } else {
+            logInStatus.value = -1
+        }
     }
 }

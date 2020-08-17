@@ -2,6 +2,8 @@ package ru.nikshlykov.clothesshop.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -37,6 +39,20 @@ class AuthActivity : AppCompatActivity() {
             signUpButton.isEnabled = false
             authViewModel.createUser(emailEditText.text.toString(), passwordEditText.text.toString())
         }
+
+        passwordEditText.addTextChangedListener(object: TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s?.length!! < 6){
+                    passwordEditText.error = "Пароль должен состоять минимум из 6 символов"
+                }
+            }
+        })
 
         authViewModel = ViewModelProvider.NewInstanceFactory().create(AuthViewModel::class.java)
         authViewModel.logInStatus.observe(this, Observer {
