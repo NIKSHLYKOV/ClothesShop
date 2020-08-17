@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -34,6 +35,13 @@ class AuthViewModel : ViewModel() {
                 )
                 logInStatus.postValue(-1)
             }
+        }
+    }
+
+    fun checkUser(){
+        val user:FirebaseUser? = firebaseAuth.currentUser
+        if (user != null){
+            logInStatus.value = 2
         }
     }
 

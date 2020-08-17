@@ -75,6 +75,11 @@ class AuthActivity : AppCompatActivity() {
         })
     }
 
+    override fun onStart() {
+        super.onStart()
+        authViewModel.checkUser()
+    }
+
     private fun findViews() {
         emailEditText = findViewById(R.id.activity_auth___edit_text___email)
         passwordEditText = findViewById(R.id.activity_auth___edit_text___password)
