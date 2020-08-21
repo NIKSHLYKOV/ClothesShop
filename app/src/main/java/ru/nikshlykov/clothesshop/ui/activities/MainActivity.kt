@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.firebase.auth.FirebaseAuth
 import ru.nikshlykov.clothesshop.R
 
 class MainActivity : AppCompatActivity() {
@@ -42,6 +43,11 @@ class MainActivity : AppCompatActivity() {
         ), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        navView.setNavigationItemSelectedListener {
+            FirebaseAuth.getInstance().signOut()
+            finish()
+            true
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

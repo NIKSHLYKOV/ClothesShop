@@ -17,4 +17,5 @@
     <string name="sign_in">Войти</string>
     <string name="sigh_up">Зарегистрироваться</string>
     <string name="sign_in_with">Войти через</string>
+    <string name="exit">Выйти</string>
 </resources>
