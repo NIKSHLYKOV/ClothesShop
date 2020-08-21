@@ -10,11 +10,9 @@ import com.google.firebase.auth.FirebaseUser
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class AuthViewModel : ViewModel() {
+class AuthViewModel constructor(private var firebaseAuth: FirebaseAuth): ViewModel() {
 
     var logInStatus: MutableLiveData<Int> = MutableLiveData()
-
-    private var firebaseAuth: FirebaseAuth
 
     private var listener: OnCompleteListener<AuthResult>
 

@@ -10,8 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import ru.nikshlykov.clothesshop.App
 import ru.nikshlykov.clothesshop.R
 import ru.nikshlykov.clothesshop.viewmodels.AuthViewModel
+import ru.nikshlykov.clothesshop.viewmodels.ViewModelFactory
+import javax.inject.Inject
 
 class AuthActivity : AppCompatActivity() {
 
@@ -21,10 +24,13 @@ class AuthActivity : AppCompatActivity() {
     private lateinit var signInButton: MaterialButton
     private lateinit var signUpButton: MaterialButton
 
+    @Inject lateinit var viewModelFactory: ViewModelFactory
     private lateinit var authViewModel: AuthViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as App).appComponent.inject(this)
         super.onCreate(savedInstanceState)
+        authViewModel = viewModelFactory.create(AuthViewModel::class.java)
         setContentView(R.layout.activity_auth)
         findViews()
 
@@ -54,7 +60,6 @@ class AuthActivity : AppCompatActivity() {
             }
         })
 
-        authViewModel = ViewModelProvider.NewInstanceFactory().create(AuthViewModel::class.java)
         authViewModel.logInStatus.observe(this, Observer {
             when (it) {
                 -1 -> {
