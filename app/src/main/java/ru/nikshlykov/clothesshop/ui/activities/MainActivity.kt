@@ -56,10 +56,17 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        navView.setNavigationItemSelectedListener {
-            mainViewModel.signOut()
-            finish()
-            true
+        navView.setNavigationItemSelectedListener { it ->
+            when (it.itemId) {
+                R.id.nav_profile -> {
+
+                }
+                R.id.nav_exit -> {
+                    mainViewModel.signOut()
+                    finish()
+                    true
+                }
+            }
         }
     }
 
