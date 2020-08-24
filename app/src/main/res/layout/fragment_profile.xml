@@ -1,12 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="8dp">
 
-    <TextView
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/fragment_profile___card_view___user_info"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Профиль" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="8dp"
+        app:cardBackgroundColor="@color/beige"
+        app:cardElevation="6dp"
+        app:cardCornerRadius="16dp">
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+
+                android:layout_marginTop="8dp"
+
+                android:src="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/fragment_profile___text_view___name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="Никита Шлыков" />
+
+            <TextView
+                android:id="@+id/fragment_profile___text_view___email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="8dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+
+                android:textStyle="bold"
+                android:text="nikshlykov@gmail.com" />
+
+            <TextView
+                android:id="@+id/fragment_profile___text_view___phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+
+                android:layout_marginBottom="8dp"
+
+                android:textStyle="bold"
+                android:text="+7(903)-516-14-99" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/fragment_profile___button___purchase_history"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:layout_above="@id/fragment_profile___button___sign_out"
+        android:text="История покупок"
+        android:textAlignment="textStart"
+        app:icon="@drawable/ic_history" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/fragment_profile___button___sign_out"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:text="@string/sign_out"
+
+        android:textAlignment="textStart"
+        app:icon="@drawable/ic_exit_to_app" />
+
+</RelativeLayout>

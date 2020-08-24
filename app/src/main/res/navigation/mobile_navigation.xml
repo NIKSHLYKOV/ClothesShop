@@ -23,4 +23,8 @@
         android:name="ru.nikshlykov.clothesshop.ui.fragments.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="ru.nikshlykov.clothesshop.ui.fragments.ProfileFragment"
+        android:label="ProfileFragment" />
 </navigation>
