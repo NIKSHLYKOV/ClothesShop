@@ -1,101 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="8dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/fragment_profile___card_view___user_info"
+    <data>
+        <variable
+            name="viewModel"
+            type="ru.nikshlykov.clothesshop.viewmodels.ProfileViewModel" />
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_margin="8dp"
-        app:cardBackgroundColor="@color/beige"
-        app:cardElevation="6dp"
-        app:cardCornerRadius="16dp">
+        android:layout_height="match_parent"
+        android:padding="8dp">
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/fragment_profile___card_view___user_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_alignParentTop="true"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@color/beige"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center"
-
-                android:layout_marginTop="8dp"
-
-                android:src="@color/colorAccent" />
-
-            <TextView
-                android:id="@+id/fragment_profile___text_view___name"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:gravity="center"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
 
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:text="Никита Шлыков" />
+                    android:layout_marginTop="8dp"
 
-            <TextView
-                android:id="@+id/fragment_profile___text_view___email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                    android:src="@color/colorAccent" />
 
-                android:layout_marginBottom="8dp"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
+                <TextView
+                    android:id="@+id/fragment_profile___text_view___name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
 
-                android:textStyle="bold"
-                android:text="nikshlykov@gmail.com" />
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
 
-            <TextView
-                android:id="@+id/fragment_profile___text_view___phone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                    android:text="@{viewModel.name}"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
+                <TextView
+                    android:id="@+id/fragment_profile___text_view___email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
 
-                android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
 
-                android:textStyle="bold"
-                android:text="+7(903)-516-14-99" />
+                    android:text="@{viewModel.email}"
+                    android:textStyle="bold" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/fragment_profile___text_view___phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
 
-    </com.google.android.material.card.MaterialCardView>
+                    android:layout_marginBottom="8dp"
+                    android:paddingStart="8dp"
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/fragment_profile___button___purchase_history"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="match_parent"
+                    android:paddingEnd="8dp"
 
-        android:layout_height="wrap_content"
+                    android:text="@{viewModel.phone}"
+                    android:textStyle="bold" />
 
-        android:layout_above="@id/fragment_profile___button___sign_out"
-        android:text="История покупок"
-        android:textAlignment="textStart"
-        app:icon="@drawable/ic_history" />
+            </LinearLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/fragment_profile___button___sign_out"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="match_parent"
+        </com.google.android.material.card.MaterialCardView>
 
-        android:layout_height="wrap_content"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/fragment_profile___button___purchase_history"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
 
-        android:layout_alignParentBottom="true"
-        android:text="@string/sign_out"
+            android:layout_height="wrap_content"
 
-        android:textAlignment="textStart"
-        app:icon="@drawable/ic_exit_to_app" />
+            android:layout_above="@id/fragment_profile___button___sign_out"
+            android:text="История покупок"
+            android:textAlignment="textStart"
+            app:icon="@drawable/ic_history" />
 
-</RelativeLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/fragment_profile___button___sign_out"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentBottom="true"
+            android:text="@string/sign_out"
+
+            android:textAlignment="textStart"
+            app:icon="@drawable/ic_exit_to_app" />
+
+    </RelativeLayout>
+</layout>
