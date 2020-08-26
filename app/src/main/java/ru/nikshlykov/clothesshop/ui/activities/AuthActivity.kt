@@ -17,7 +17,7 @@ import ru.nikshlykov.clothesshop.viewmodels.ViewModelFactory
 import javax.inject.Inject
 
 class AuthActivity : AppCompatActivity() {
-
+/*
     private lateinit var emailEditText: TextInputEditText
     private lateinit var passwordEditText: TextInputEditText
 
@@ -90,5 +90,5 @@ class AuthActivity : AppCompatActivity() {
         passwordEditText = findViewById(R.id.activity_auth___edit_text___password)
         signInButton = findViewById(R.id.activity_auth___button___sign_in)
         signUpButton = findViewById(R.id.activity_auth___button___sign_up)
-    }
+    }*/
 }

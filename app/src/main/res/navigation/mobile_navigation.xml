@@ -26,5 +26,15 @@
     <fragment
         android:id="@+id/nav_profile"
         android:name="ru.nikshlykov.clothesshop.ui.fragments.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile"/>
+    <fragment
+        android:id="@+id/nav_auth"
+        android:name="ru.nikshlykov.clothesshop.ui.fragments.AuthFragment"
+        android:label="AuthFragment"
+        tools:layout="@layout/activity_auth"/>
+    <fragment
+        android:id="@+id/authProfileFlowFragment"
+        android:name="ru.nikshlykov.clothesshop.ui.fragments.AuthProfileFlowFragment"
+        android:label="AuthProfileFlowFragment" />
 </navigation>
