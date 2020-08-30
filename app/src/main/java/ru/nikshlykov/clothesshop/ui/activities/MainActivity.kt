@@ -2,7 +2,6 @@ package ru.nikshlykov.clothesshop.ui.activities
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -14,25 +13,14 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import ru.nikshlykov.clothesshop.App
 import ru.nikshlykov.clothesshop.R
-import ru.nikshlykov.clothesshop.viewmodels.MainViewModel
-import ru.nikshlykov.clothesshop.viewmodels.ViewModelFactory
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-    private lateinit var mainViewModel: MainViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as App).appComponent.inject(this)
         super.onCreate(savedInstanceState)
-
-        mainViewModel = viewModelFactory.create(MainViewModel::class.java)
 
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -53,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_home,
                 R.id.nav_gallery,
                 R.id.nav_slideshow,
-                R.id.nav_profile
+                R.id.nav_auth_profile_flow
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -64,19 +52,6 @@ class MainActivity : AppCompatActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
-            R.id.action_sign_out -> {
-                mainViewModel.signOut()
-                finish()
-                return true
-            }
-            else -> {
-                return super.onOptionsItemSelected(item)
-            }
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

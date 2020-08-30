@@ -11,10 +11,10 @@ class ViewModelFactory @Inject constructor(private var firebaseAuth: FirebaseAut
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(AuthViewModel::class.java)) {
             return AuthViewModel(firebaseAuth) as T
-        } else if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-            return MainViewModel(firebaseAuth) as T
         } else if (modelClass.isAssignableFrom(ProfileViewModel::class.java)) {
             return ProfileViewModel(firebaseAuth) as T
+        } else if (modelClass.isAssignableFrom(AuthProfileFlowViewModel::class.java)) {
+            return AuthProfileFlowViewModel(firebaseAuth) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

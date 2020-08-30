@@ -1,7 +1,6 @@
 package ru.nikshlykov.clothesshop.ui.fragments
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -15,7 +14,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import ru.nikshlykov.clothesshop.App
 import ru.nikshlykov.clothesshop.R
-import ru.nikshlykov.clothesshop.ui.activities.MainActivity
+import ru.nikshlykov.clothesshop.ui.OnChildFragmentInteractionListener
 import ru.nikshlykov.clothesshop.viewmodels.AuthViewModel
 import ru.nikshlykov.clothesshop.viewmodels.ViewModelFactory
 import javax.inject.Inject
@@ -28,6 +27,8 @@ class AuthFragment : Fragment() {
     private lateinit var signInButton: MaterialButton
     private lateinit var signUpButton: MaterialButton
 
+    private lateinit var onChildFragmentInteractionListener: OnChildFragmentInteractionListener
+
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var authViewModel: AuthViewModel
@@ -35,29 +36,16 @@ class AuthFragment : Fragment() {
     override fun onAttach(context: Context) {
         (requireActivity().application as App).appComponent.inject(this)
         super.onAttach(context)
+        if (parentFragment?.parentFragment is OnChildFragmentInteractionListener){
+            onChildFragmentInteractionListener = parentFragment?.parentFragment as OnChildFragmentInteractionListener}
+        else{
+            throw RuntimeException( parentFragment?.parentFragment.toString() + " must implement OnChildFragmentInteractionListener")
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         authViewModel = viewModelFactory.create(AuthViewModel::class.java)
-
-        authViewModel.logInStatus.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                -1 -> {
-                    Toast.makeText(activity, "Ошибка", Toast.LENGTH_SHORT)
-                        .show()
-                    signInButton.isEnabled = true
-                    signUpButton.isEnabled = true
-                    signInButton.setBackgroundColor(resources.getColor(R.color.colorPrimary))
-                }
-                2 -> {
-                    startActivity(Intent(activity, MainActivity::class.java))
-                    signInButton.setBackgroundColor(resources.getColor(R.color.colorPrimary))
-                    signInButton.isEnabled = true
-                    signUpButton.isEnabled = true
-                }
-            }
-        })
     }
 
     override fun onCreateView(
@@ -71,6 +59,24 @@ class AuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         findViews(view)
+
+        authViewModel.logInStatus.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                -1 -> {
+                    Toast.makeText(activity, "Ошибка", Toast.LENGTH_SHORT)
+                        .show()
+                    signInButton.isEnabled = true
+                    signUpButton.isEnabled = true
+                    signInButton.setBackgroundColor(resources.getColor(R.color.colorPrimary))
+                }
+                2 -> {
+                    onChildFragmentInteractionListener.messageFromChildToParent("auth success")
+                    signInButton.setBackgroundColor(resources.getColor(R.color.colorPrimary))
+                    signInButton.isEnabled = true
+                    signUpButton.isEnabled = true
+                }
+            }
+        })
 
         signInButton.setOnClickListener {
             signUpButton.isEnabled = false
@@ -100,11 +106,6 @@ class AuthFragment : Fragment() {
                 }
             }
         })
-    }
-
-    override fun onStart() {
-        super.onStart()
-        authViewModel.checkUser()
     }
 
     private fun findViews(view: View) {
