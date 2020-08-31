@@ -7,6 +7,7 @@ import ru.nikshlykov.clothesshop.ui.activities.MainActivity
 import ru.nikshlykov.clothesshop.ui.fragments.AuthFragment
 import ru.nikshlykov.clothesshop.ui.fragments.AuthProfileFlowFragment
 import ru.nikshlykov.clothesshop.ui.fragments.ProfileFragment
+import ru.nikshlykov.clothesshop.ui.fragments.RegistrationFragment
 
 @Component(modules = [FirebaseModule::class, ViewModelModule::class])
 interface AppComponent {
@@ -22,4 +23,5 @@ interface AppComponent {
 
     fun inject(fragment: AuthFragment)
     fun inject(fragment: ProfileFragment)
+    fun inject(fragment: RegistrationFragment)
 }

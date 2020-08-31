@@ -47,6 +47,8 @@ class AuthProfileFlowFragment : Fragment(), OnChildFragmentInteractionListener {
         val navHostFragment =
             childFragmentManager.findFragmentById(R.id.flow_fragment_auth_profile___nav_host) as NavHostFragment
         navController = navHostFragment.navController
+
+        // TODO убрать название этого фрагмента из тулбара.
     }
 
     override fun onStart() {
@@ -57,14 +59,19 @@ class AuthProfileFlowFragment : Fragment(), OnChildFragmentInteractionListener {
     }
 
     override fun messageFromChildToParent(message: String) {
-        if (message == "auth success") {
-            navController.navigate(R.id.nav_profile)
-        } else if (message == "user log out"){
-            //TODO Переделать так, чтобы мы возвращались к предыдущему AuthFragment, а не создавали новый
-            // При использовании только popUpTo без destination navigate не работает. Он работает только, когда
-            // AuthFragment был убит, и в стеке его нет.
-            //navController.navigate(ProfileFragmentDirections.actionNavProfileToNavAuth())
-            navController.navigate(R.id.action_nav_profile_to_nav_auth)
+        when (message) {
+            "auth success" -> navController.navigate(R.id.nav_profile)
+            "user log out" -> {
+                //TODO Переделать так, чтобы мы возвращались к предыдущему AuthFragment, а не создавали новый
+                // При использовании только popUpTo без destination navigate не работает. Он работает только, когда
+                // AuthFragment был убит, и в стеке его нет.
+                //navController.navigate(ProfileFragmentDirections.actionNavProfileToNavAuth())
+                navController.navigate(R.id.action_nav_profile_to_nav_auth)
+            }
+            "to register" -> navController.navigate(R.id.nav_registration)
+            "sign up success" -> navController.navigate(R.id.action_registrationFragment_to_nav_profile)
+            // TODO Перехватывать кнопку назад в RegistrationFragment для перехода к AuthFragment.
+            //  И сделать там кнопку <- на тулбаре.
         }
     }
 }

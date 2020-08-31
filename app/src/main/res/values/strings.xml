@@ -15,8 +15,9 @@
     <string name="email">Почта</string>
     <string name="password">Пароль</string>
     <string name="sign_in">Войти</string>
-    <string name="sigh_up">Зарегистрироваться</string>
+    <string name="sign_up">Зарегистрироваться</string>
     <string name="sign_in_with">Войти через</string>
     <string name="profile">Профиль</string>
     <string name="sign_out">Выйти</string>
+    <string name="name">Имя</string>
 </resources>

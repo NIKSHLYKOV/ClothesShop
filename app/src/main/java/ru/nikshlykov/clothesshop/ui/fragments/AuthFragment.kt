@@ -36,10 +36,11 @@ class AuthFragment : Fragment() {
     override fun onAttach(context: Context) {
         (requireActivity().application as App).appComponent.inject(this)
         super.onAttach(context)
-        if (parentFragment?.parentFragment is OnChildFragmentInteractionListener){
-            onChildFragmentInteractionListener = parentFragment?.parentFragment as OnChildFragmentInteractionListener}
-        else{
-            throw RuntimeException( parentFragment?.parentFragment.toString() + " must implement OnChildFragmentInteractionListener")
+        if (parentFragment?.parentFragment is OnChildFragmentInteractionListener) {
+            onChildFragmentInteractionListener =
+                parentFragment?.parentFragment as OnChildFragmentInteractionListener
+        } else {
+            throw RuntimeException(parentFragment?.parentFragment.toString() + " must implement OnChildFragmentInteractionListener")
         }
     }
 
@@ -53,7 +54,7 @@ class AuthFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.activity_auth, container, false)
+        return inflater.inflate(R.layout.fragment_auth, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -87,10 +88,7 @@ class AuthFragment : Fragment() {
         signUpButton.setOnClickListener {
             signInButton.isEnabled = false
             signUpButton.isEnabled = false
-            authViewModel.createUser(
-                emailEditText.text.toString(),
-                passwordEditText.text.toString()
-            )
+            onChildFragmentInteractionListener.messageFromChildToParent("to register")
         }
 
         passwordEditText.addTextChangedListener(object : TextWatcher {

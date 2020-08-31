@@ -15,6 +15,8 @@ class ViewModelFactory @Inject constructor(private var firebaseAuth: FirebaseAut
             return ProfileViewModel(firebaseAuth) as T
         } else if (modelClass.isAssignableFrom(AuthProfileFlowViewModel::class.java)) {
             return AuthProfileFlowViewModel(firebaseAuth) as T
+        } else if (modelClass.isAssignableFrom(RegistrationViewModel::class.java)) {
+            return RegistrationViewModel(firebaseAuth) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

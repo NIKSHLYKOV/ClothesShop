@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
-class ProfileViewModel constructor(private val firebaseAuth: FirebaseAuth): ViewModel() {
+class ProfileViewModel constructor(private val firebaseAuth: FirebaseAuth) : ViewModel() {
 
     val name: MutableLiveData<String> = MutableLiveData()
     val email: MutableLiveData<String> = MutableLiveData()
@@ -13,12 +13,12 @@ class ProfileViewModel constructor(private val firebaseAuth: FirebaseAuth): View
 
     init {
         val firebaseUser: FirebaseUser? = firebaseAuth.currentUser
-        name.value = "Никита Шлыков"
+        name.value = if (firebaseUser?.displayName != null) firebaseUser.displayName else "Шлыков"
         email.value = firebaseUser?.email
         phone.value = "+7(900)-207-13-56"
     }
 
-    fun signOut(){
+    fun signOut() {
         firebaseAuth.signOut()
     }
 }

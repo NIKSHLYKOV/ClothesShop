@@ -2,17 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="8dp">
+
+    <!-- TODO Сделать перемещение UI по открытию клавиатуры. -->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_centerInParent="true"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_centerInParent="true">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
@@ -20,8 +21,8 @@
             android:layout_marginBottom="64dp"
             android:gravity="center"
             android:text="@string/app_name"
-            android:textSize="40sp"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/colorPrimary"
+            android:textSize="40sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -45,64 +46,65 @@
                 android:id="@+id/activity_auth___edit_text___password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="@string/password" />
+                android:hint="@string/password"
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/activity_auth___button___sign_in"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/sign_in"
-            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
+            android:text="@string/sign_in" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/activity_auth___button___sign_up"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/sigh_up"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
-        
+            android:text="@string/sign_up" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:textAlignment="center"
-            android:text="@string/sign_in_with"/>
+            android:text="@string/sign_in_with"
+            android:textAlignment="center" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
+
             <androidx.appcompat.widget.AppCompatImageButton
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_facebook"
-                android:background="@drawable/simple_ripple"/>
+                android:background="@drawable/simple_ripple"
+                android:src="@drawable/ic_facebook" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="24dp"
-                android:src="@drawable/ic_twitter"
-                android:background="@drawable/simple_ripple"/>
+                android:background="@drawable/simple_ripple"
+                android:src="@drawable/ic_twitter" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="24dp"
-                android:src="@drawable/ic_google_hangouts"
-                android:background="@drawable/simple_ripple"/>
+                android:background="@drawable/simple_ripple"
+                android:src="@drawable/ic_google_hangouts" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="24dp"
-                android:src="@drawable/ic_vk"
-                android:background="@drawable/simple_ripple"/>
+                android:background="@drawable/simple_ripple"
+                android:src="@drawable/ic_vk" />
 
         </LinearLayout>
     </LinearLayout>
