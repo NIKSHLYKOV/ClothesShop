@@ -4,12 +4,17 @@
     tools:showIn="navigation_view">
 
     <item
-        android:id="@+id/nav_auth_profile_flow"
-        android:icon="@drawable/ic_person"
-        android:title="@string/profile" />
-
-    <item
         android:id="@+id/nav_home"
         android:icon="@drawable/ic_menu_camera"
         android:title="@string/menu_home" />
+
+    <item
+        android:id="@+id/nav_goods"
+        android:icon="@drawable/ic_store"
+        android:title="@string/menu_goods" />
+
+    <item
+        android:id="@+id/nav_auth_profile_flow"
+        android:icon="@drawable/ic_person"
+        android:title="@string/menu_profile" />
 </menu>

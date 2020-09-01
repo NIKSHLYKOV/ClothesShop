@@ -8,16 +8,14 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_goods">Товары</string>
+    <string name="menu_profile">Профиль</string>
 
-    <string name="home_second">Home Second</string>
     <string name="email">Почта</string>
     <string name="password">Пароль</string>
     <string name="sign_in">Войти</string>
     <string name="sign_up">Зарегистрироваться</string>
     <string name="sign_in_with">Войти через</string>
-    <string name="profile">Профиль</string>
     <string name="sign_out">Выйти</string>
     <string name="name">Имя</string>
 </resources>
