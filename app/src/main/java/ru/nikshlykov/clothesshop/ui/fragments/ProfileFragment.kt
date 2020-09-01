@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
-import com.google.firebase.auth.FirebaseAuth
 import ru.nikshlykov.clothesshop.App
 import ru.nikshlykov.clothesshop.R
 import ru.nikshlykov.clothesshop.databinding.FragmentProfileBinding

@@ -1,4 +1,4 @@
-package ru.nikshlykov.clothesshop.ui.fragments
+package ru.nikshlykov.clothesshop.ui.flowfragments
 
 import android.content.Context
 import android.os.Bundle
