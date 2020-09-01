@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home,
+                R.id.nav_goods_flow,
                 R.id.nav_auth_profile_flow
             ), drawerLayout
         )

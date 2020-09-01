@@ -9,18 +9,17 @@
         android:id="@+id/nav_home"
         android:name="ru.nikshlykov.clothesshop.ui.fragments.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" >
-    </fragment>
+        tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_goods"
-        android:name="ru.nikshlykov.clothesshop.ui.fragments.ClothesCategoriesFragment"
+        android:id="@+id/nav_goods_flow"
+        android:name="ru.nikshlykov.clothesshop.ui.flowfragments.GoodsFlowFragment"
         android:label="@string/menu_goods"
-        tools:layout="@layout/fragment_clothes_categories" />
+        tools:layout="@layout/flow_fragment_goods" />
 
     <fragment
         android:id="@+id/nav_auth_profile_flow"
         android:name="ru.nikshlykov.clothesshop.ui.flowfragments.AuthProfileFlowFragment"
         android:label="AuthProfileFlow"
-        tools:layout="@layout/flow_fragment_auth_profile"/>
+        tools:layout="@layout/flow_fragment_auth_profile" />
 </navigation>
