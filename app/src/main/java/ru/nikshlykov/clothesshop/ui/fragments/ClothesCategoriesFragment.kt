@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.nikshlykov.clothesshop.App
 import ru.nikshlykov.clothesshop.ui.adapters.ClothesCategoriesRvAdapter
 import ru.nikshlykov.clothesshop.R
+import ru.nikshlykov.clothesshop.data.models.ClothesCategory
+import ru.nikshlykov.clothesshop.ui.OnChildFragmentInteractionListener
+import ru.nikshlykov.clothesshop.ui.OnItemClickListener
 import ru.nikshlykov.clothesshop.viewmodels.ClothesCategoriesViewModel
 import ru.nikshlykov.clothesshop.viewmodels.ViewModelFactory
 import javax.inject.Inject
@@ -23,17 +26,31 @@ class ClothesCategoriesFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
+    private lateinit var onChildFragmentInteractionListener: OnChildFragmentInteractionListener
+
     private val categoriesRecyclerViewAdapter: ClothesCategoriesRvAdapter =
         ClothesCategoriesRvAdapter()
 
     override fun onAttach(context: Context) {
         (requireActivity().application as App).appComponent.inject(this)
         super.onAttach(context)
+        if (parentFragment?.parentFragment is OnChildFragmentInteractionListener) {
+            onChildFragmentInteractionListener =
+                parentFragment?.parentFragment as OnChildFragmentInteractionListener
+        } else {
+            throw RuntimeException(parentFragment?.parentFragment.toString() + " must implement OnChildFragmentInteractionListener")
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         clothesCategoriesViewModel = viewModelFactory.create(ClothesCategoriesViewModel::class.java)
+        categoriesRecyclerViewAdapter.attachOnItemClickListener(object :
+            OnItemClickListener<ClothesCategory> {
+            override fun onItemClick(model: ClothesCategory, v: View) {
+                onChildFragmentInteractionListener.messageFromChildToParent("open category")
+            }
+        })
     }
 
     override fun onCreateView(
@@ -56,5 +73,10 @@ class ClothesCategoriesFragment : Fragment() {
         })
 
         clothesCategoriesViewModel.categoriesRequest()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        categoriesRecyclerViewAdapter.detachOnItemClickListener()
     }
 }

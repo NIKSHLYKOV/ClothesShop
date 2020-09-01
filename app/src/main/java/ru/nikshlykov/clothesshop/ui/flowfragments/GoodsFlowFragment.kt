@@ -8,8 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import ru.nikshlykov.clothesshop.R
+import ru.nikshlykov.clothesshop.ui.OnChildFragmentInteractionListener
 
-class GoodsFlowFragment : Fragment() {
+class GoodsFlowFragment : Fragment(), OnChildFragmentInteractionListener {
 
     private lateinit var navController: NavController
 
@@ -28,5 +29,11 @@ class GoodsFlowFragment : Fragment() {
         navController = navHostFragment.navController
 
         // TODO убрать название этого фрагмента из тулбара.
+    }
+
+    override fun messageFromChildToParent(message: String) {
+        when (message) {
+            "open category" -> navController.navigate(R.id.action_nav_clothes_categories_to_categoryFragment)
+        }
     }
 }
