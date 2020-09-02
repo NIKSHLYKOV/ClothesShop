@@ -5,11 +5,8 @@ import ru.nikshlykov.clothesshop.di.modules.FirebaseModule
 import ru.nikshlykov.clothesshop.di.modules.RepositoriesModule
 import ru.nikshlykov.clothesshop.di.modules.ViewModelModule
 import ru.nikshlykov.clothesshop.ui.MainActivity
-import ru.nikshlykov.clothesshop.ui.fragments.AuthFragment
 import ru.nikshlykov.clothesshop.ui.flowfragments.AuthProfileFlowFragment
-import ru.nikshlykov.clothesshop.ui.fragments.RegistrationFragment
-import ru.nikshlykov.clothesshop.ui.fragments.ClothesCategoriesFragment
-import ru.nikshlykov.clothesshop.ui.fragments.ProfileFragment
+import ru.nikshlykov.clothesshop.ui.fragments.*
 import javax.inject.Singleton
 
 @Singleton
@@ -29,4 +26,5 @@ interface AppComponent {
     fun inject(fragment: ClothesCategoriesFragment)
     fun inject(fragment: ProfileFragment)
     fun inject(fragment: RegistrationFragment)
+    fun inject(fragment: CategoryFragment)
 }
