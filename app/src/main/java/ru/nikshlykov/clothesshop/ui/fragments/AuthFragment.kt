@@ -71,7 +71,8 @@ class AuthFragment : Fragment() {
                     signInButton.setBackgroundColor(resources.getColor(R.color.colorPrimary))
                 }
                 2 -> {
-                    onChildFragmentInteractionListener.messageFromChildToParent("auth success")
+                    val navDirections = AuthFragmentDirections.actionNavAuthToNavProfile()
+                    onChildFragmentInteractionListener.onChildFragmentInteraction(navDirections)
                     signInButton.setBackgroundColor(resources.getColor(R.color.colorPrimary))
                     signInButton.isEnabled = true
                     signUpButton.isEnabled = true
@@ -88,7 +89,8 @@ class AuthFragment : Fragment() {
         signUpButton.setOnClickListener {
             signInButton.isEnabled = false
             signUpButton.isEnabled = false
-            onChildFragmentInteractionListener.messageFromChildToParent("to register")
+            val navDirections = AuthFragmentDirections.actionNavAuthToRegistrationFragment()
+            onChildFragmentInteractionListener.onChildFragmentInteraction(navDirections)
         }
 
         passwordEditText.addTextChangedListener(object : TextWatcher {

@@ -46,7 +46,8 @@ class CategoryFragment : Fragment() {
         categoryViewModel = viewModelFactory.create(CategoryViewModel::class.java)
         goodsRvAdapter.attachOnItemClickListener(object : OnItemClickListener<Product> {
             override fun onItemClick(model: Product, v: View) {
-                onChildFragmentInteractionListener.messageFromChildToParent("open product")
+                val navDirections = CategoryFragmentDirections.actionNavCategoryToProductFragment()
+                onChildFragmentInteractionListener.onChildFragmentInteraction(navDirections)
             }
         })
     }

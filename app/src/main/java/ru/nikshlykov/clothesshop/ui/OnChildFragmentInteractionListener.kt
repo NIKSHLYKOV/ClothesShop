@@ -1,5 +1,7 @@
 package ru.nikshlykov.clothesshop.ui
 
+import androidx.navigation.NavDirections
+
 interface OnChildFragmentInteractionListener {
-    fun messageFromChildToParent(message: String)
+    fun onChildFragmentInteraction(navDirections: NavDirections)
 }

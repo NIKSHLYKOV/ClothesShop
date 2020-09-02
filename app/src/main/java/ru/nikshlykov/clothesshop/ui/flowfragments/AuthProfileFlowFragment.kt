@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.NavHostFragment
 import ru.nikshlykov.clothesshop.App
 import ru.nikshlykov.clothesshop.R
@@ -58,20 +59,15 @@ class AuthProfileFlowFragment : Fragment(), OnChildFragmentInteractionListener {
         }
     }
 
-    override fun messageFromChildToParent(message: String) {
-        when (message) {
-            "auth success" -> navController.navigate(R.id.nav_profile)
-            "user log out" -> {
-                //TODO Переделать так, чтобы мы возвращались к предыдущему AuthFragment, а не создавали новый
-                // При использовании только popUpTo без destination navigate не работает. Он работает только, когда
-                // AuthFragment был убит, и в стеке его нет.
-                //navController.navigate(ProfileFragmentDirections.actionNavProfileToNavAuth())
-                navController.navigate(R.id.action_nav_profile_to_nav_auth)
-            }
-            "to register" -> navController.navigate(R.id.nav_registration)
-            "sign up success" -> navController.navigate(R.id.action_registrationFragment_to_nav_profile)
-            // TODO Перехватывать кнопку назад в RegistrationFragment для перехода к AuthFragment.
-            //  И сделать там кнопку <- на тулбаре.
-        }
+    override fun onChildFragmentInteraction(navDirections: NavDirections) {
+        navController.navigate(navDirections)
+
+        //"user log out"
+        //TODO Переделать так, чтобы мы возвращались к предыдущему AuthFragment, а не создавали новый
+        // При использовании только popUpTo без destination navigate не работает. Он работает только, когда
+        // AuthFragment был убит, и в стеке его нет.
+
+        // TODO Перехватывать кнопку назад в RegistrationFragment для перехода к AuthFragment.
+        //  И сделать там кнопку <- на тулбаре.
     }
 }

@@ -57,7 +57,8 @@ class ProfileFragment : Fragment() {
         view.findViewById<MaterialButton>(R.id.fragment_profile___button___sign_out)
             .setOnClickListener {
                 profileViewModel.signOut()
-                onChildFragmentInteractionListener.messageFromChildToParent("user log out")
+                val navDirections = ProfileFragmentDirections.actionNavProfileToNavAuth()
+                onChildFragmentInteractionListener.onChildFragmentInteraction(navDirections)
             }
     }
 }

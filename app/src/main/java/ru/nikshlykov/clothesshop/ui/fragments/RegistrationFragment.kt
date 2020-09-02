@@ -60,7 +60,8 @@ class RegistrationFragment : Fragment() {
                 1 -> {
                     Toast.makeText(context, "Регистрация прошла успешно", Toast.LENGTH_SHORT)
                         .show()
-                    onChildFragmentInteractionListener.messageFromChildToParent("sign up success")
+                    val navDirections = RegistrationFragmentDirections.actionRegistrationFragmentToNavProfile()
+                    onChildFragmentInteractionListener.onChildFragmentInteraction(navDirections)
                 }
             }
         })
