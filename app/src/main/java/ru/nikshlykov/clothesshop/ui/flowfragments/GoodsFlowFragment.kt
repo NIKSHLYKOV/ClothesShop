@@ -34,6 +34,7 @@ class GoodsFlowFragment : Fragment(), OnChildFragmentInteractionListener {
     override fun messageFromChildToParent(message: String) {
         when (message) {
             "open category" -> navController.navigate(R.id.action_nav_clothes_categories_to_categoryFragment)
+            "open product" -> navController.navigate(R.id.action_nav_category_to_productFragment)
         }
     }
 }

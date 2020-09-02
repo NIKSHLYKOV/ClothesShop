@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.nikshlykov.clothesshop.App
 import ru.nikshlykov.clothesshop.R
 import ru.nikshlykov.clothesshop.data.models.Product
+import ru.nikshlykov.clothesshop.ui.OnChildFragmentInteractionListener
 import ru.nikshlykov.clothesshop.ui.OnItemClickListener
 import ru.nikshlykov.clothesshop.ui.adapters.GoodsRvAdapter
 import ru.nikshlykov.clothesshop.viewmodels.CategoryViewModel
@@ -28,9 +28,17 @@ class CategoryFragment : Fragment() {
 
     private var goodsRvAdapter: GoodsRvAdapter = GoodsRvAdapter()
 
+    private lateinit var onChildFragmentInteractionListener: OnChildFragmentInteractionListener
+
     override fun onAttach(context: Context) {
         (requireActivity().application as App).appComponent.inject(this)
         super.onAttach(context)
+        if (parentFragment?.parentFragment is OnChildFragmentInteractionListener) {
+            onChildFragmentInteractionListener =
+                parentFragment?.parentFragment as OnChildFragmentInteractionListener
+        } else {
+            throw RuntimeException(parentFragment?.parentFragment.toString() + " must implement OnChildFragmentInteractionListener")
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +46,7 @@ class CategoryFragment : Fragment() {
         categoryViewModel = viewModelFactory.create(CategoryViewModel::class.java)
         goodsRvAdapter.attachOnItemClickListener(object : OnItemClickListener<Product> {
             override fun onItemClick(model: Product, v: View) {
-                Toast.makeText(context, model.name + " has been clicked", Toast.LENGTH_SHORT).show()
+                onChildFragmentInteractionListener.messageFromChildToParent("open product")
             }
         })
     }

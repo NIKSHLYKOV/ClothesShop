@@ -18,4 +18,6 @@
     <string name="sign_in_with">Войти через</string>
     <string name="sign_out">Выйти</string>
     <string name="name">Имя</string>
+    <string name="choose_size">Выбрать размер</string>
+    <string name="add">Добавить</string>
 </resources>
