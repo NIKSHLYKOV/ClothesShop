@@ -5,12 +5,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import ru.nikshlykov.clothesshop.data.repositories.CategoryRepository
 import ru.nikshlykov.clothesshop.data.repositories.ClothesCategoriesRepository
+import ru.nikshlykov.clothesshop.data.repositories.ProductRepository
 import javax.inject.Inject
 
 class ViewModelFactory @Inject constructor(
     private var firebaseAuth: FirebaseAuth,
     private var clothesCategoriesRepository: ClothesCategoriesRepository,
-    private var categoryRepository: CategoryRepository
+    private var categoryRepository: CategoryRepository,
+    private var productRepository: ProductRepository
 ) :
     ViewModelProvider.Factory {
 
@@ -27,6 +29,8 @@ class ViewModelFactory @Inject constructor(
             return ClothesCategoriesViewModel(clothesCategoriesRepository) as T
         } else if (modelClass.isAssignableFrom(CategoryViewModel::class.java)) {
             return CategoryViewModel(categoryRepository) as T
+        } else if (modelClass.isAssignableFrom(ProductViewModel::class.java)) {
+            return ProductViewModel(productRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

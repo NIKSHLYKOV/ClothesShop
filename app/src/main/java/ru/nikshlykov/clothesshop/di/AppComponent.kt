@@ -27,4 +27,5 @@ interface AppComponent {
     fun inject(fragment: ProfileFragment)
     fun inject(fragment: RegistrationFragment)
     fun inject(fragment: CategoryFragment)
+    fun inject(fragment: ProductFragment)
 }

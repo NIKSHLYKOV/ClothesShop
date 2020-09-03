@@ -48,7 +48,10 @@ class ClothesCategoriesFragment : Fragment() {
         categoriesRecyclerViewAdapter.attachOnItemClickListener(object :
             OnItemClickListener<ClothesCategory> {
             override fun onItemClick(model: ClothesCategory, v: View) {
-                val navDirections = ClothesCategoriesFragmentDirections.actionNavClothesCategoriesToCategoryFragment()
+                val navDirections =
+                    ClothesCategoriesFragmentDirections.actionNavClothesCategoriesToCategoryFragment(
+                        model.id
+                    )
                 onChildFragmentInteractionListener.onChildFragmentInteraction(navDirections)
             }
         })

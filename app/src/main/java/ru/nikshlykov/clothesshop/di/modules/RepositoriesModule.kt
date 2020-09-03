@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import ru.nikshlykov.clothesshop.data.repositories.CategoryRepository
 import ru.nikshlykov.clothesshop.data.repositories.ClothesCategoriesRepository
+import ru.nikshlykov.clothesshop.data.repositories.ProductRepository
 import javax.inject.Singleton
 
 @Module
@@ -19,5 +20,11 @@ class RepositoriesModule {
     @Singleton
     fun providesCategoryRepository(): CategoryRepository {
         return CategoryRepository()
+    }
+
+    @Provides
+    @Singleton
+    fun providesProductRepository(): ProductRepository {
+        return ProductRepository()
     }
 }
