@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
@@ -30,8 +31,6 @@ class GoodsFlowFragment : Fragment(),
         val navHostFragment =
             childFragmentManager.findFragmentById(R.id.flow_fragment_goods___nav_host) as NavHostFragment
         navController = navHostFragment.navController
-
-        // TODO убрать название этого фрагмента из тулбара.
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -47,6 +46,8 @@ class GoodsFlowFragment : Fragment(),
                     }
                 }
             })
+
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = ""
     }
 
     override fun onChildFragmentInteraction(navDirections: NavDirections) {
