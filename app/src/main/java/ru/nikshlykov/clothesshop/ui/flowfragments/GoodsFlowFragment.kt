@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
@@ -11,7 +12,8 @@ import androidx.navigation.fragment.NavHostFragment
 import ru.nikshlykov.clothesshop.R
 import ru.nikshlykov.clothesshop.ui.OnChildFragmentInteractionListener
 
-class GoodsFlowFragment : Fragment(), OnChildFragmentInteractionListener {
+class GoodsFlowFragment : Fragment(),
+    OnChildFragmentInteractionListener {
 
     private lateinit var navController: NavController
 
@@ -32,7 +34,24 @@ class GoodsFlowFragment : Fragment(), OnChildFragmentInteractionListener {
         // TODO убрать название этого фрагмента из тулбара.
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (navController.currentBackStackEntry?.destination?.id == R.id.nav_clothes_categories) {
+                        this.remove()
+                        requireActivity().onBackPressedDispatcher.onBackPressed()
+                    } else {
+                        navController.popBackStack()
+                    }
+                }
+            })
+    }
+
     override fun onChildFragmentInteraction(navDirections: NavDirections) {
         navController.navigate(navDirections)
+
+        //TODO Разобраться, почему в стеке лежит два одинаковых фрагмента, которые являются startDestination.
     }
 }

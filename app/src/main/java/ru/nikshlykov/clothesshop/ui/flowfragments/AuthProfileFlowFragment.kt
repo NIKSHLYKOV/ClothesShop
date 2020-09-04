@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
@@ -43,6 +44,22 @@ class AuthProfileFlowFragment : Fragment(), OnChildFragmentInteractionListener {
         return inflater.inflate(R.layout.flow_fragment_auth_profile, container, false)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    when (navController.currentBackStackEntry?.destination?.id){
+                        R.id.nav_auth, R.id.nav_profile -> {
+                            this.remove()
+                            requireActivity().onBackPressedDispatcher.onBackPressed()
+                        }
+                        else -> navController.popBackStack()
+                    }
+                }
+            })
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val navHostFragment =
@@ -60,14 +77,12 @@ class AuthProfileFlowFragment : Fragment(), OnChildFragmentInteractionListener {
     }
 
     override fun onChildFragmentInteraction(navDirections: NavDirections) {
-        navController.navigate(navDirections)
+        if (navDirections.actionId != R.id.action_nav_profile_to_nav_auth) {
+            navController.navigate(navDirections)
+        } else {
+            navController.popBackStack()
+        }
 
-        //"user log out"
-        //TODO Переделать так, чтобы мы возвращались к предыдущему AuthFragment, а не создавали новый
-        // При использовании только popUpTo без destination navigate не работает. Он работает только, когда
-        // AuthFragment был убит, и в стеке его нет.
-
-        // TODO Перехватывать кнопку назад в RegistrationFragment для перехода к AuthFragment.
-        //  И сделать там кнопку <- на тулбаре.
+        // TODO Сделать в RegistrationFragment кнопку <- на тулбаре.
     }
 }
