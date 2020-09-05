@@ -13,7 +13,7 @@ import ru.nikshlykov.clothesshop.App
 import ru.nikshlykov.clothesshop.R
 import ru.nikshlykov.clothesshop.data.models.Product
 import ru.nikshlykov.clothesshop.ui.OnChildFragmentInteractionListener
-import ru.nikshlykov.clothesshop.ui.OnItemClickListener
+import ru.nikshlykov.clothesshop.ui.adapters.OnItemClickListener
 import ru.nikshlykov.clothesshop.ui.adapters.GoodsRvAdapter
 import ru.nikshlykov.clothesshop.viewmodels.CategoryViewModel
 import ru.nikshlykov.clothesshop.viewmodels.ViewModelFactory
@@ -44,7 +44,8 @@ class CategoryFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         categoryViewModel = viewModelFactory.create(CategoryViewModel::class.java)
-        goodsRvAdapter.attachOnItemClickListener(object : OnItemClickListener<Product> {
+        goodsRvAdapter.attachOnItemClickListener(object :
+            OnItemClickListener<Product> {
             override fun onItemClick(model: Product, v: View) {
                 val navDirections =
                     CategoryFragmentDirections.actionNavCategoryToProductFragment(model.id)

@@ -14,7 +14,7 @@ import ru.nikshlykov.clothesshop.ui.adapters.ClothesCategoriesRvAdapter
 import ru.nikshlykov.clothesshop.R
 import ru.nikshlykov.clothesshop.data.models.ClothesCategory
 import ru.nikshlykov.clothesshop.ui.OnChildFragmentInteractionListener
-import ru.nikshlykov.clothesshop.ui.OnItemClickListener
+import ru.nikshlykov.clothesshop.ui.adapters.OnItemClickListener
 import ru.nikshlykov.clothesshop.viewmodels.ClothesCategoriesViewModel
 import ru.nikshlykov.clothesshop.viewmodels.ViewModelFactory
 import javax.inject.Inject

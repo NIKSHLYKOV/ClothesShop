@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.nikshlykov.clothesshop.R
 import ru.nikshlykov.clothesshop.data.models.Product
-import ru.nikshlykov.clothesshop.ui.OnItemClickListener
 
 class GoodsRvAdapter : RecyclerView.Adapter<GoodsRvAdapter.ProductViewHolder>() {
     private var onItemClickListener: OnItemClickListener<Product>? = null

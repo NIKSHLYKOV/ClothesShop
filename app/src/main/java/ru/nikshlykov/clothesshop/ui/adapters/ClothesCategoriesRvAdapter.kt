@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import ru.nikshlykov.clothesshop.R
 import ru.nikshlykov.clothesshop.data.models.ClothesCategory
-import ru.nikshlykov.clothesshop.ui.OnItemClickListener
 
 class ClothesCategoriesRvAdapter :
     RecyclerView.Adapter<ClothesCategoriesRvAdapter.ClothesCategoriesViewHolder>(){

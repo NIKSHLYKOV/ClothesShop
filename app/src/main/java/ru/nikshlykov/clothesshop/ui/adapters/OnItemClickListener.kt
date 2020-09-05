@@ -1,4 +1,4 @@
-package ru.nikshlykov.clothesshop.ui
+package ru.nikshlykov.clothesshop.ui.adapters
 
 import android.view.View
 
